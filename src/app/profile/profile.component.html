@@ -1,7 +1,13 @@
 <a [routerLink]="['/']">Home</a>
 
-<mat-select placeholder="Select Title">
-    <mat-option *ngFor="let title of titles$ | async" [value]="title.id">
-        {{ title.title }}
-    </mat-option>
-</mat-select>
+<div>
+    <div style="width: 50%;">
+        <mat-form-field>
+            <mat-select placeholder="Select Title">
+                <mat-option *ngFor="let title of titles$ | async" [value]="title.id">
+                    {{ title.title }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
