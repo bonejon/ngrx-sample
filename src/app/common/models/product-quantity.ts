@@ -1,7 +1,7 @@
 import { Product } from './product';
 
 export class ProductQuantity extends Product {
-    constructor(product: Product, quantity: number = undefined) {
+    constructor(product: Product, quantity?: number) {
         super(product.name, product.description, product.price, product.available, product.id);
 
         if (quantity !== undefined) {
@@ -9,5 +9,5 @@ export class ProductQuantity extends Product {
         }
     }
 
-    public quantity: number = 1;
+    public quantity = 1;
 }

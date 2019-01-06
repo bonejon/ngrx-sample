@@ -1,4 +1,4 @@
-import { Action } from'@ngrx/store';
+import { Action } from '@ngrx/store';
 import { PersonTitle } from '../common/models/persontitle';
 
 export const GET_PERSON_TITLE_ACTION = 'GET_PERSON_TITLE_ACTION';
@@ -19,4 +19,4 @@ export class GetPersonTitlesSuccessAction implements Action {
 
 export type Action
     = GetPersonTitlesAction
-    | GetPersonTitlesSuccessAction
+    | GetPersonTitlesSuccessAction;

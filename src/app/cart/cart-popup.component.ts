@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatBottomSheetRef, MatSnackBar } from '@angular/material';
+import { MatBottomSheetRef } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CartState, cartItemsSelector } from '../store/cart/cart.state';

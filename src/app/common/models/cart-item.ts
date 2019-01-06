@@ -10,8 +10,8 @@ export class CartItem {
     }
 
     constructor() {
-        const maxId: number = 150000;
-        const minId: number = 1;
+        const maxId = 150000;
+        const minId = 1;
 
         this.id = Math.floor(Math.random() * (maxId - minId + 1)) + minId;
     }

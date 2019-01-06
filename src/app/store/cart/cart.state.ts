@@ -7,7 +7,7 @@ export interface CartState {
 
 export const InitialCartState: CartState = {
     items: []
-}
+};
 
 export const cartStateSelector = createFeatureSelector<CartState>('cartState');
 export const cartItemsSelector = createSelector(cartStateSelector, (state: CartState) => state.items);

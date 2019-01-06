@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { commonState, personTitlesSelector } from '../store/common.state';
+import { CommonState, personTitlesSelector } from '../store/common.state';
 import { Observable } from 'rxjs';
 import { PersonTitle } from '../common/models/persontitle';
 import * as commonActions from '../store/common.actions';
@@ -12,7 +12,7 @@ import * as commonActions from '../store/common.actions';
 export class ProfileComponent implements OnInit {
     public titles$: Observable<Array<PersonTitle>>;
 
-    constructor(private store$: Store<commonState>) {
+    constructor(private store$: Store<CommonState>) {
         this.titles$ = store$.select(personTitlesSelector);
     }
 
