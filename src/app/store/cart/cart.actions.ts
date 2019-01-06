@@ -1,8 +1,5 @@
-import { Action } from'@ngrx/store';
+import { Action } from '@ngrx/store';
 import { CartItem } from 'src/app/common/models/cart-item';
-
-export const GET_CART_CONTENTS_ACTION = 'GET_CART_CONTENTS_ACTION';
-export const GET_CART_CONTENTS_ACTION_SUCCESS = 'GET_CART_CONTENTS_ACTION_SUCCESS';
 
 export const ADD_ITEM_TO_CART_ACTION = 'ADD_ITEM_TO_CART_ACTION';
 export const ADD_ITEM_TO_CART_ACTION_SUCCESS = 'ADD_ITEM_TO_CART_ACTION_SUCCESS';
@@ -10,14 +7,26 @@ export const ADD_ITEM_TO_CART_ACTION_SUCCESS = 'ADD_ITEM_TO_CART_ACTION_SUCCESS'
 export const REMOVE_ITEM_FROM_CART_ACTION = 'REMOVE_ITEM_FROM_CART_ACTION';
 export const REMOVE_ITEM_FROM_CART_ACTION_SUCCESS = 'REMOVE_ITEM_FROM_CART_ACTION_SUCCESS';
 
+export const UPDATE_CART_ITEM_ACTION = 'UPDATE_CART_ITEM_ACTION';
+export const UPDATE_CART_ITEM_ACTION_SUCCESS = 'UPDATE_CART_ITEM_ACTION_SUCCESS';
+
 export const CLEAR_CART_ACTION = 'CLEAR_CART_ACTION';
 export const CLEAR_CART_ACTION_SUCCESS = 'CLEAR_CART_ACTION_SUCCESS';
 
 export class AddItemToCartPayload {
-    public productId: number;
-    public productName: string;
-    public quantity: number;
-    public unitPrice: number
+  constructor(
+    public productId: number,
+    public productName: string,
+    public quantity: number,
+    public unitPrice: number) {
+  }
+}
+
+export class UpdateCartItemPayload {
+  constructor(
+    public cartId: number,
+    public quantity: number) {
+  }
 }
 
 export class AddItemToCartAction implements Action {
@@ -44,6 +53,18 @@ export class RemoveItemFromCartActionSuccess implements Action {
     }
 }
 
+export class UpdateCartItemAction implements Action {
+  readonly type = UPDATE_CART_ITEM_ACTION;
+  constructor(public payload: UpdateCartItemPayload) {
+  }
+}
+
+export class UpdateCartItemActionSuccess implements Action {
+  readonly type = UPDATE_CART_ITEM_ACTION_SUCCESS;
+  constructor(public payload: UpdateCartItemPayload) {
+  }
+}
+
 export class ClearCartAction implements Action {
     readonly type = CLEAR_CART_ACTION;
     constructor() {
@@ -61,5 +82,7 @@ export type Actions
     | AddItemToCartActionSuccess
     | RemoveItemFromCartAction
     | RemoveItemFromCartActionSuccess
+    | UpdateCartItemAction
+    | UpdateCartItemActionSuccess
     | ClearCartAction
     | ClearCartActionSuccess;

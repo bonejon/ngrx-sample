@@ -32,7 +32,7 @@ export class ProductListComponent implements OnInit {
             tap(() => {
                 this.snackBar.open('Cart Cleared', '', {
                     duration: 5000,
-                    politeness: "polite"
+                    politeness: 'polite'
                 });
             })).subscribe();
     }
@@ -44,11 +44,11 @@ export class ProductListComponent implements OnInit {
     }
 
     public addToCart(product: ProductQuantity): void {
-        const payload: cartActions.AddItemToCartPayload = new cartActions.AddItemToCartPayload();
-        payload.productId = product.id;
-        payload.productName = product.name;
-        payload.quantity = product.quantity;
-        payload.unitPrice = product.price;
+        const payload: cartActions.AddItemToCartPayload = new cartActions.AddItemToCartPayload(
+          product.id,
+          product.name,
+          product.quantity,
+          product.price);
 
         this.cartStore.dispatch(new cartActions.AddItemToCartAction(payload));
 

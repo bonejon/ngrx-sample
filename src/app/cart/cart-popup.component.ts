@@ -27,4 +27,8 @@ export class CartPopupComponent {
         this.cartStore$.dispatch(new cartActions.ClearCartAction());
         this.bottomSheetRef.dismiss();
     }
+
+    public updateCartItem(item: CartItem): void {
+      this.cartStore$.dispatch(new cartActions.UpdateCartItemAction(new cartActions.UpdateCartItemPayload(item.id, item.quantity)));
+    }
 }
