@@ -1,37 +1,61 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../common/services/product.service';
 import { Observable } from 'rxjs';
-import { Product } from '../common/models/product';
-import { CartState, cartItemsSelector } from '../store/cart/cart.state';
+import { map, tap } from 'rxjs/operators';
+import { ofType, Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
+import { MatBottomSheet, MatSnackBar } from '@angular/material';
+import { ProductService } from '../common/services/product.service';
+import { CartState, cartItemsSelector } from '../store/cart/cart.state';
 import * as cartActions from '../store/cart/cart.actions';
 import { CartItem } from '../common/models/cart-item';
+import { ProductQuantity } from '../common/models/product-quantity';
+import { CartPopupComponent } from '../cart/cart-popup.component';
 
 @Component({
     selector: 'app-product-list',
     templateUrl: './product-list.component.html'
 })
 export class ProductListComponent implements OnInit {
-    public displayedColumns: Array<string> = [ 'name', 'price', 'available', 'actions' ];
-    public productList$: Observable<Array<Product>>;
+    public displayedColumns: Array<string> = [ 'name', 'price', 'available', 'quantity', 'actions' ];
+    public productList$: Observable<Array<ProductQuantity>>;
     public cartItems$: Observable<Array<CartItem>>;
 
     constructor(private productService: ProductService,
-                private cartStore: Store<CartState>) {
+                private cartStore: Store<CartState>,
+                private bottomSheet: MatBottomSheet,
+                private actions$: Actions,
+                private snackBar: MatSnackBar) {
         this.cartItems$ = this.cartStore.select(cartItemsSelector);
+
+        this.actions$.pipe(
+            ofType<cartActions.ClearCartAction>(cartActions.CLEAR_CART_ACTION),
+            tap(() => {
+                this.snackBar.open('Cart Cleared', '', {
+                    duration: 5000,
+                    politeness: "polite"
+                });
+            })).subscribe();
     }
 
     public ngOnInit(): void {
-        this.productList$ = this.productService.getProducts();
+        this.productList$ = this.productService.getProducts().pipe(
+            map((p) => p.map(i => new ProductQuantity(i)))
+        );
     }
 
-    public addToCart(product: Product): void {
+    public addToCart(product: ProductQuantity): void {
         const payload: cartActions.AddItemToCartPayload = new cartActions.AddItemToCartPayload();
         payload.productId = product.id;
         payload.productName = product.name;
-        payload.quantity = 1;
+        payload.quantity = product.quantity;
         payload.unitPrice = product.price;
 
         this.cartStore.dispatch(new cartActions.AddItemToCartAction(payload));
+
+        product.quantity = 1;
+    }
+
+    public showCartPopup(): void {
+        this.bottomSheet.open(CartPopupComponent);
     }
 }

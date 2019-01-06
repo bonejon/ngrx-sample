@@ -24,4 +24,15 @@ export class CartEffects {
             return of(new cartActions.AddItemToCartActionSuccess(cartItem));
         })
     )
+
+    @Effect() removeItemFromCartAction$: Observable<Action> = this.actions$.pipe(
+        ofType<cartActions.RemoveItemFromCartAction>(cartActions.REMOVE_ITEM_FROM_CART_ACTION),
+        map(action => action.payload),
+        switchMap((payload) => of(new cartActions.RemoveItemFromCartActionSuccess(payload)))
+    )
+
+    @Effect() clearCartAction$: Observable<Action> = this.actions$.pipe(
+        ofType<cartActions.ClearCartAction>(cartActions.CLEAR_CART_ACTION),
+        switchMap(() => of(new cartActions.ClearCartActionSuccess()))
+    )
 }

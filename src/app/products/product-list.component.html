@@ -1,5 +1,5 @@
 <h2>List of Products</h2>
-Current Cart Count: {{ (cartItems$ | async).length }}
+Current Cart Count: <button mat-button (click)="showCartPopup()"> {{ (cartItems$ | async).length }} </button>
 <table mat-table [dataSource]="productList$ | async" style="width: 100%;">
     <!-- Name Column -->
     <ng-container matColumnDef="name">
@@ -19,10 +19,16 @@ Current Cart Count: {{ (cartItems$ | async).length }}
         <td mat-cell *matCellDef="let element"> {{ element.available }} </td>
     </ng-container>
 
+    <!-- Quantity Column -->
+    <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> <mat-form-field><input matInput type="number" spin="0" [(ngModel)]="element.quantity"></mat-form-field> </td>
+    </ng-container>
+        
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> &nbsp; </th>
-        <td mat-cell *matCellDef="let element"> <button *ngIf="element.available" (click)="addToCart(element)">Add to cart</button> </td>
+        <td mat-cell *matCellDef="let element"> <button mat-flat-button color="primary" *ngIf="element.available" (click)="addToCart(element)">Add to cart</button> </td>
     </ng-container>
         
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

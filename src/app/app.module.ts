@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatInputModule, MatFormFieldModule, MatSelectModule, MatTableModule } from '@angular/material';
+import { MatInputModule, MatFormFieldModule, MatSelectModule, MatTableModule, MatButtonModule, MatBottomSheetModule, MatSnackBarModule, MatIconModule } from '@angular/material';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -19,19 +19,27 @@ import { ProductListComponent } from './products/product-list.component';
 import { ProductService } from './common/services/product.service';
 import { cartReducer } from './store/cart/cart.reducer';
 import { CartEffects } from './store/cart/cart.effects';
+import { FormsModule } from '@angular/forms';
+import { CartPopupComponent } from './cart/cart-popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    ProductListComponent
+    ProductListComponent,
+    CartPopupComponent
+  ],
+  entryComponents: [
+    CartPopupComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatInputModule, MatFormFieldModule, MatSelectModule, MatTableModule,
+    MatInputModule, MatFormFieldModule, MatSelectModule, MatTableModule, MatButtonModule, MatBottomSheetModule,
+    MatSnackBarModule, MatIconModule,
     StoreModule.forRoot({ commonState: commonReducer }),
     StoreModule.forFeature('cartState', cartReducer ),
     EffectsModule.forRoot([ CommonEffects ]),

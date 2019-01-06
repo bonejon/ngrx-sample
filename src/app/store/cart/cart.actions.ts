@@ -7,6 +7,12 @@ export const GET_CART_CONTENTS_ACTION_SUCCESS = 'GET_CART_CONTENTS_ACTION_SUCCES
 export const ADD_ITEM_TO_CART_ACTION = 'ADD_ITEM_TO_CART_ACTION';
 export const ADD_ITEM_TO_CART_ACTION_SUCCESS = 'ADD_ITEM_TO_CART_ACTION_SUCCESS';
 
+export const REMOVE_ITEM_FROM_CART_ACTION = 'REMOVE_ITEM_FROM_CART_ACTION';
+export const REMOVE_ITEM_FROM_CART_ACTION_SUCCESS = 'REMOVE_ITEM_FROM_CART_ACTION_SUCCESS';
+
+export const CLEAR_CART_ACTION = 'CLEAR_CART_ACTION';
+export const CLEAR_CART_ACTION_SUCCESS = 'CLEAR_CART_ACTION_SUCCESS';
+
 export class AddItemToCartPayload {
     public productId: number;
     public productName: string;
@@ -26,6 +32,34 @@ export class AddItemToCartActionSuccess implements Action {
     }
 }
 
+export class RemoveItemFromCartAction implements Action {
+    readonly type = REMOVE_ITEM_FROM_CART_ACTION;
+    constructor(public payload: number) {
+    }
+}
+
+export class RemoveItemFromCartActionSuccess implements Action {
+    readonly type = REMOVE_ITEM_FROM_CART_ACTION_SUCCESS;
+    constructor(public payload: number) {
+    }
+}
+
+export class ClearCartAction implements Action {
+    readonly type = CLEAR_CART_ACTION;
+    constructor() {
+    }
+}
+
+export class ClearCartActionSuccess implements Action {
+    readonly type = CLEAR_CART_ACTION_SUCCESS;
+    constructor() {
+    }
+}
+
 export type Actions
     = AddItemToCartAction
-    | AddItemToCartActionSuccess;
+    | AddItemToCartActionSuccess
+    | RemoveItemFromCartAction
+    | RemoveItemFromCartActionSuccess
+    | ClearCartAction
+    | ClearCartActionSuccess;
