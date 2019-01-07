@@ -16,9 +16,10 @@ import { CartPopupComponent } from '../cart/cart-popup.component';
     templateUrl: './product-list.component.html'
 })
 export class ProductListComponent implements OnInit {
-    public displayedColumns: Array<string> = [ 'name', 'price', 'available', 'quantity', 'actions' ];
-    public productList$: Observable<Array<ProductQuantity>>;
-    public cartItems$: Observable<Array<CartItem>>;
+  private _cartTotalValue: number;
+  public displayedColumns: Array<string> = [ 'name', 'price', 'available', 'quantity', 'actions' ];
+  public productList$: Observable<Array<ProductQuantity>>;
+  public cartItems$: Observable<Array<CartItem>>;
 
     constructor(private productService: ProductService,
                 private cartStore: Store<CartState>,
@@ -26,6 +27,12 @@ export class ProductListComponent implements OnInit {
                 private actions$: Actions,
                 private snackBar: MatSnackBar) {
         this.cartItems$ = this.cartStore.select(cartItemsSelector);
+
+        this.cartItems$.subscribe(i => {
+          this._cartTotalValue = i.reduce(function(a: number, b: CartItem) {
+            return a + b.totalPrice;
+          }, 0);
+        });
 
         this.actions$.pipe(
             ofType<cartActions.ClearCartAction>(cartActions.CLEAR_CART_ACTION),
@@ -35,6 +42,10 @@ export class ProductListComponent implements OnInit {
                     politeness: 'polite'
                 });
             })).subscribe();
+    }
+
+    public get cartTotal(): number {
+      return this._cartTotalValue;
     }
 
     public ngOnInit(): void {

@@ -17,7 +17,7 @@ export class CartPopupComponent {
     constructor(private bottomSheetRef: MatBottomSheetRef<CartPopupComponent>,
                 private cartStore$: Store<CartState>) {
         this.cartList$ = this.cartStore$.select(cartItemsSelector);
-        }
+    }
 
     public removeFromCart(item: CartItem): void {
         this.cartStore$.dispatch(new cartActions.RemoveItemFromCartAction(item.id));
