@@ -1,9 +1,9 @@
 export class PersonTitle {
-    public id?: number;
-    public title: string;
+  public id?: number;
+  public title: string;
 
-    constructor(title: string, id?: number, ) {
-        this.id = id;
-        this.title = title;
-    }
+  constructor(title: string, id?: number, ) {
+    this.id = id;
+    this.title = title;
+  }
 }

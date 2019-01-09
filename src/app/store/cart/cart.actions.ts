@@ -30,27 +30,27 @@ export class UpdateCartItemPayload {
 }
 
 export class AddItemToCartAction implements Action {
-    readonly type = ADD_ITEM_TO_CART_ACTION;
-    constructor(public payload: AddItemToCartPayload) {
-    }
+  readonly type = ADD_ITEM_TO_CART_ACTION;
+  constructor(public payload: AddItemToCartPayload) {
+  }
 }
 
 export class AddItemToCartActionSuccess implements Action {
-    readonly type = ADD_ITEM_TO_CART_ACTION_SUCCESS;
-    constructor(public payload: CartItem) {
-    }
+  readonly type = ADD_ITEM_TO_CART_ACTION_SUCCESS;
+  constructor(public payload: CartItem) {
+  }
 }
 
 export class RemoveItemFromCartAction implements Action {
-    readonly type = REMOVE_ITEM_FROM_CART_ACTION;
-    constructor(public payload: number) {
-    }
+  readonly type = REMOVE_ITEM_FROM_CART_ACTION;
+  constructor(public payload: number) {
+  }
 }
 
 export class RemoveItemFromCartActionSuccess implements Action {
-    readonly type = REMOVE_ITEM_FROM_CART_ACTION_SUCCESS;
-    constructor(public payload: number) {
-    }
+  readonly type = REMOVE_ITEM_FROM_CART_ACTION_SUCCESS;
+  constructor(public payload: number) {
+  }
 }
 
 export class UpdateCartItemAction implements Action {
@@ -66,23 +66,23 @@ export class UpdateCartItemActionSuccess implements Action {
 }
 
 export class ClearCartAction implements Action {
-    readonly type = CLEAR_CART_ACTION;
-    constructor() {
-    }
+  readonly type = CLEAR_CART_ACTION;
+  constructor() {
+  }
 }
 
 export class ClearCartActionSuccess implements Action {
-    readonly type = CLEAR_CART_ACTION_SUCCESS;
-    constructor() {
-    }
+  readonly type = CLEAR_CART_ACTION_SUCCESS;
+  constructor() {
+  }
 }
 
 export type Actions
-    = AddItemToCartAction
-    | AddItemToCartActionSuccess
-    | RemoveItemFromCartAction
-    | RemoveItemFromCartActionSuccess
-    | UpdateCartItemAction
-    | UpdateCartItemActionSuccess
-    | ClearCartAction
-    | ClearCartActionSuccess;
+  = AddItemToCartAction
+  | AddItemToCartActionSuccess
+  | RemoveItemFromCartAction
+  | RemoveItemFromCartActionSuccess
+  | UpdateCartItemAction
+  | UpdateCartItemActionSuccess
+  | ClearCartAction
+  | ClearCartActionSuccess;
