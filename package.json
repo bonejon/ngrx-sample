@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng lint && ng serve",
-    "build": "ng lint ngrx-sample && ng test --single-run && ng build --prod",
+    "build": "ng lint ngrx-sample && ng test --watch=false && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
