@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng lint && ng serve",
-    "build": "ng lint ngrx-sample && ng test --watch=false && ng build --prod",
+    "build": "ng lint ngrx-sample && ng test --watch=false --browsers=ChromeHeadless && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -49,6 +49,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-bullet": "^1.0.3",
     "protractor": "~5.4.0",
+    "puppeteer": "^1.11.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.1.6",
