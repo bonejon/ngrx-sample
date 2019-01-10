@@ -15,7 +15,7 @@ export class CartEffects {
         ofType<cartActions.AddItemToCartAction>(cartActions.ADD_ITEM_TO_CART_ACTION),
         map(action => action.payload),
         switchMap((payload) => {
-            const cartItem: CartItem = new CartItem();
+            const cartItem: CartItem = new CartItem(payload.cartId);
             cartItem.productId = payload.productId;
             cartItem.productName = payload.productName;
             cartItem.quantity = payload.quantity;

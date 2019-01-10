@@ -18,7 +18,8 @@ export class AddItemToCartPayload {
     public productId: number,
     public productName: string,
     public quantity: number,
-    public unitPrice: number) {
+    public unitPrice: number,
+    public cartId?: number) {
   }
 }
 

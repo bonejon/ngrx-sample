@@ -8,8 +8,6 @@ export class CommonService {
     titles.push(new PersonTitle('Mrs', 2));
     titles.push(new PersonTitle('Miss', 3));
 
-    console.log('here');
-
     return of(titles);
   }
 }

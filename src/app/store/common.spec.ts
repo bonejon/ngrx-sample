@@ -11,16 +11,44 @@ import { commonReducer } from './common.reducer';
 import { Observable, of } from 'rxjs';
 
 describe('NGRX: common state', () => {
-  describe('actions', () => {
-    configureTestSuite(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          StoreModule.forRoot({ commonState: commonReducer }),
-        ],
-        providers: [ CommonService ]
-      });
+  describe('reducers', () => {
+    it('Should not alter the state with an unknown action', () => {
+      const initialState: CommonState = initialCommonState;
+
+      const newState: CommonState = commonReducer(initialState, new commonActions.GetPersonTitlesAction());
+
+      expect(newState).toEqual(initialCommonState);
     });
 
+    it('Should not alter the state with an unknown action', () => {
+      const initialState: CommonState = initialCommonState;
+
+      const expectedTitles: Array<PersonTitle> = [
+        new PersonTitle('Mr', 1),
+        new PersonTitle('Mrs', 2),
+        new PersonTitle('Miss', 3)
+      ];
+
+      const newState: CommonState = commonReducer(initialState, new commonActions.GetPersonTitlesSuccessAction(expectedTitles));
+
+      expect(newState).not.toBe(initialState);
+      expect(newState.titles).toBe(expectedTitles);
+    });
+  });
+
+  describe('actions', () => {
+    it('should have correct type for GetTitlesAction', () => {
+      const action = new commonActions.GetPersonTitlesAction();
+      expect(action.type).toBe(commonActions.GET_PERSON_TITLE_ACTION);
+    });
+
+    it('should have correct type for GetTitlesSuccessAction', () => {
+      const action = new commonActions.GetPersonTitlesSuccessAction([]);
+      expect(action.type).toBe(commonActions.GET_PERSON_TITLE_ACTION_SUCCESS);
+    });
+  });
+
+  describe('effects', () => {
     it('GetPersonTitleAction should be called when state is empty', () => {
       const emptyStoreSpy = jasmine.createSpyObj('emptyStoreSpy', [
         'dispatch', 'subscribe'
@@ -67,7 +95,10 @@ describe('NGRX: common state', () => {
       const source = cold('a', { a: new commonActions.GetPersonTitlesAction() });
       const effects = new CommonEffects(commonService, populatedStoreSpy, source);
 
+      const expected = cold('');
+
       expect(effects.loadPersonTitles$).toBeDefined();
+      expect(effects.loadPersonTitles$).toBeObservable(expected);
 
       expect(commonService.getTitles).toHaveBeenCalledTimes(0);
     });

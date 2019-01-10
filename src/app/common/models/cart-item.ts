@@ -9,10 +9,14 @@ export class CartItem {
     return this.unitPrice * this.quantity;
   }
 
-  constructor() {
-    const maxId = 150000;
-    const minId = 1;
+  constructor(itemId?: number) {
+    if (itemId) {
+      this.id = itemId;
+    } else {
+      const maxId = 150000;
+      const minId = 1;
 
-    this.id = Math.floor(Math.random() * (maxId - minId + 1)) + minId;
+      this.id = Math.floor(Math.random() * (maxId - minId + 1)) + minId;
+    }
   }
 }

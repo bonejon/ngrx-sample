@@ -22,8 +22,9 @@ export function cartReducer(state: CartState = InitialCartState, action: cartAct
               newItem.id = i.id;
               newItem.productId = i.productId;
               newItem.productName = i.productName;
-              newItem.quantity = i.quantity;
               newItem.unitPrice = i.unitPrice;
+
+              newItem.quantity = action.payload.quantity;
 
               return newItem;
             }
