@@ -49,7 +49,7 @@ describe('NGRX: common state', () => {
   });
 
   describe('effects', () => {
-    fit('GetPersonTitleAction should be called when state is empty', () => {
+    it('GetPersonTitleAction should be called when state is empty', () => {
       const expectedTitles: Array<PersonTitle> = [
         new PersonTitle('Mr', 1),
         new PersonTitle('Mrs', 2),
@@ -90,18 +90,19 @@ describe('NGRX: common state', () => {
 
       populatedStoreSpy.select = () => of(expectedTitles);
 
-      const commonService: CommonService = new CommonService();
-      spyOn(commonService, 'getTitles').and.callThrough();
+      const commonServiceSpy = {
+        getTitles: jasmine.createSpy('getTitles').and.returnValue(of(expectedTitles))
+      } as CommonService;
 
       const source = cold('a', { a: new commonActions.GetPersonTitlesAction() });
-      const effects = new CommonEffects(commonService, populatedStoreSpy, source);
+      const effects = new CommonEffects(commonServiceSpy, populatedStoreSpy, source);
 
       const expected = cold('');
 
       expect(effects.loadPersonTitles$).toBeDefined();
       expect(effects.loadPersonTitles$).toBeObservable(expected);
 
-      expect(commonService.getTitles).toHaveBeenCalledTimes(0);
+      expect(commonServiceSpy.getTitles).toHaveBeenCalledTimes(0);
     });
   });
 });
