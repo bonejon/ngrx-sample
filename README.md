@@ -19,9 +19,13 @@ Both states have full tests round the actions, effects, and reducers to ensure c
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Installing dependencies
+
+The project dependencies are managed by `yarn`, so ensure you have the latest version installed and run `yarn` in the root directory.
+
 ## Build
 
-For a full pipeline build including linting and testing run `ng build`. This will build the output to the `dist/` directory with
+For a full pipeline build including linting and testing run `npm run build`. This will build the output to the `dist/` directory with
 full AOT and treeshaking.
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
