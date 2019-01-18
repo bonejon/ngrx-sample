@@ -21,6 +21,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Build
 
+For a full pipeline build including linting and testing run `ng build`. This will build the output to the `dist/` directory with
+full AOT and treeshaking.
+
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
