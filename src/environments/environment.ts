@@ -7,7 +7,8 @@ export const environment = {
   production: false,
   dynamicImports: [
     StoreDevtoolsModule.instrument({ maxAge: 20 })
-  ]
+  ],
+  hmr: false
 };
 
 /*

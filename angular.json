@@ -32,6 +32,14 @@
             "scripts": []
           },
           "configurations": {
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmr.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -66,6 +74,11 @@
           "configurations": {
             "production": {
               "browserTarget": "ngrx-sample:build:production"
+            },
+            "hmr": {
+              "hmr": true,
+              "hmrWarning": false,
+              "browserTarget": "ngrx-sample:build:hmr"
             }
           }
         },
