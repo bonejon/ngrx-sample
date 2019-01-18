@@ -1,12 +1,12 @@
 import { cold } from 'jasmine-marbles';
 import * as commonActions from './common.actions';
 import { CommonEffects } from './common.effects';
-import { CommonService } from '../common/services/common.service';
+import { CommonService } from '../../common/services/common.service';
 import { Store, StoreModule } from '@ngrx/store';
 import { configureTestSuite } from 'ng-bullet';
 import { TestBed } from '@angular/core/testing';
 import { CommonState, initialCommonState } from './common.state';
-import { PersonTitle } from '../common/models/persontitle';
+import { PersonTitle } from '../../common/models/persontitle';
 import { commonReducer } from './common.reducer';
 import { Observable, of } from 'rxjs';
 

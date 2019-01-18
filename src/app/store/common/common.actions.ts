@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { PersonTitle } from '../common/models/persontitle';
+import { PersonTitle } from '../../common/models/persontitle';
 
 export const GET_PERSON_TITLE_ACTION = 'GET_PERSON_TITLE_ACTION';
 export const GET_PERSON_TITLE_ACTION_SUCCESS = 'GET_PERSON_TITLE_ACTION_SUCCESS';

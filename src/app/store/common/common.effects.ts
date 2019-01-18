@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { switchMap, map, withLatestFrom, filter } from 'rxjs/operators';
 import * as commonActions from './common.actions';
-import { CommonService } from '../common/services/common.service';
+import { CommonService } from '../../common/services/common.service';
 import { CommonState } from './common.state';
 import { personTitlesSelector } from './common.selectors';
 

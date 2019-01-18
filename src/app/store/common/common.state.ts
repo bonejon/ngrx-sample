@@ -1,4 +1,4 @@
-import { PersonTitle } from '../common/models/persontitle';
+import { PersonTitle } from '../../common/models/persontitle';
 
 export interface CommonState {
   titles: Array<PersonTitle>;

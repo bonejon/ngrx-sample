@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CommonState } from '../store/common.state';
+import { CommonState } from '../store/common/common.state';
 import { Observable } from 'rxjs';
 import { PersonTitle } from '../common/models/persontitle';
-import * as commonActions from '../store/common.actions';
-import { personTitlesSelector } from '../store/common.selectors';
+import * as commonActions from '../store/common/common.actions';
+import { personTitlesSelector } from '../store/common/common.selectors';
 
 @Component({
     selector: 'app-profile',
