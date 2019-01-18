@@ -1,6 +1,6 @@
 <h2>List of Products</h2>
-Current Cart Count: <button mat-button (click)="showCartPopup()">
-  {{ (cartItems$ | async).length }}&nbsp;: {{ cartTotal | currency:'GBP':'£' }})
+Current Cart Contents: <button mat-button (click)="showCartPopup()">
+  {{ (cartItems$ | async).length }}&nbsp; ({{ cartTotal | currency:'GBP':'£' }})
 </button>
 
 <table mat-table [dataSource]="productList$ | async" style="width: 100%;">

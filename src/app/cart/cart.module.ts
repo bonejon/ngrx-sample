@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import {
   MatInputModule,
   MatFormFieldModule,
@@ -8,8 +10,7 @@ import {
   MatIconModule
 } from '@angular/material';
 
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { CartStoreModule } from '../store/cart/cart-store.module';
 import { CartPopupComponent } from './cart-popup.component';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { CartPopupComponent } from './cart-popup.component';
   imports: [
     CommonModule,
     FormsModule,
+    CartStoreModule,
     MatInputModule, MatFormFieldModule, MatTableModule,
     MatButtonModule, MatBottomSheetModule, MatIconModule
   ]
